@@ -1,32 +1,58 @@
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/lib/auth';
-import Link from 'next/link';
-import dbConnect from '@/app/lib/mongodb';
-import File from '@/app/models/File';
+'use client';
 
-export default async function Dashboard() {
-  const session = await getServerSession(authOptions);
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import toast from 'react-hot-toast';
+
+export default function Dashboard() {
+  const [stats, setStats] = useState({
+    totalFiles: 0,
+    activeFiles: 0,
+    downloadCount: 0,
+    recentFiles: []
+  });
+  const [isLoading, setIsLoading] = useState(true);
   
-  await dbConnect();
+  useEffect(() => {
+    fetchStats();
+    
+    // Actualizar estadísticas cada 30 segundos
+    const interval = setInterval(fetchStats, 30000);
+    return () => clearInterval(interval);
+  }, []);
   
-  // Obtener estadísticas del usuario
-  const totalFiles = await File.countDocuments({ ownerId: session.user.id });
-  const activeFiles = await File.countDocuments({ ownerId: session.user.id, isActive: true });
-  const totalDownloads = await File.aggregate([
-    { $match: { ownerId: session.user.id } },
-    { $group: { _id: null, total: { $sum: "$downloadCount" } } }
-  ]);
-  
-  const downloadCount = totalDownloads.length > 0 ? totalDownloads[0].total : 0;
-  
-  // Obtener archivos recientes
-  const recentFiles = await File.find({ ownerId: session.user.id })
-    .sort({ createdAt: -1 })
-    .limit(5);
+  const fetchStats = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch('/api/stats');
+      
+      if (!response.ok) {
+        throw new Error('Error al obtener estadísticas');
+      }
+      
+      const data = await response.json();
+      setStats(data);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   
   return (
     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mb-6 text-white">Dashboard</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+        <button 
+          onClick={fetchStats}
+          className="text-sm text-gray-400 hover:text-pink-500 flex items-center"
+        >
+          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          Actualizar datos
+        </button>
+      </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-gray-900 rounded-lg border border-gray-800 shadow p-6">
@@ -49,7 +75,13 @@ export default async function Dashboard() {
             </div>
             <div className="ml-4">
               <h2 className="font-medium text-gray-400">Total de archivos</h2>
-              <p className="text-2xl font-semibold text-white">{totalFiles}</p>
+              <p className="text-2xl font-semibold text-white">
+                {isLoading ? (
+                  <span className="inline-block w-12 bg-gray-800 animate-pulse h-8 rounded"></span>
+                ) : (
+                  stats.totalFiles
+                )}
+              </p>
             </div>
           </div>
         </div>
@@ -74,7 +106,13 @@ export default async function Dashboard() {
             </div>
             <div className="ml-4">
               <h2 className="font-medium text-gray-400">Archivos activos</h2>
-              <p className="text-2xl font-semibold text-white">{activeFiles}</p>
+              <p className="text-2xl font-semibold text-white">
+                {isLoading ? (
+                  <span className="inline-block w-12 bg-gray-800 animate-pulse h-8 rounded"></span>
+                ) : (
+                  stats.activeFiles
+                )}
+              </p>
             </div>
           </div>
         </div>
@@ -99,7 +137,13 @@ export default async function Dashboard() {
             </div>
             <div className="ml-4">
               <h2 className="font-medium text-gray-400">Descargas totales</h2>
-              <p className="text-2xl font-semibold text-white">{downloadCount}</p>
+              <p className="text-2xl font-semibold text-white">
+                {isLoading ? (
+                  <span className="inline-block w-12 bg-gray-800 animate-pulse h-8 rounded"></span>
+                ) : (
+                  stats.downloadCount
+                )}
+              </p>
             </div>
           </div>
         </div>
@@ -113,7 +157,13 @@ export default async function Dashboard() {
           </Link>
         </div>
         
-        {recentFiles.length > 0 ? (
+        {isLoading ? (
+          <div className="space-y-4">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="h-12 bg-gray-800 animate-pulse rounded"></div>
+            ))}
+          </div>
+        ) : stats.recentFiles.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-800">
               <thead className="bg-gray-800">
@@ -136,7 +186,7 @@ export default async function Dashboard() {
                 </tr>
               </thead>
               <tbody className="bg-gray-900 divide-y divide-gray-800">
-                {recentFiles.map((file) => (
+                {stats.recentFiles.map((file) => (
                   <tr key={file._id} className="hover:bg-gray-800">
                     <td className="px-6 py-4 whitespace-nowrap truncate max-w-xs">
                       <div className="text-sm font-medium text-gray-200">{file.name}</div>
