@@ -41,16 +41,16 @@ export default function Login() {
   };
   
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-black">
+      <div className="w-full max-w-md p-8 bg-gray-900 border border-gray-800 rounded-lg shadow-lg">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">Iniciar sesión</h1>
-          <p className="text-gray-600">Accede a tu cuenta para gestionar tus archivos</p>
+          <h1 className="text-3xl font-bold mb-2 text-white">Iniciar sesión</h1>
+          <p className="text-gray-400">Accede a tu cuenta para gestionar tus archivos</p>
         </div>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
               Correo electrónico
             </label>
             <input
@@ -63,16 +63,16 @@ export default function Login() {
                   message: 'Dirección de correo inválida',
                 },
               })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-gray-800 border border-gray-700 text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500"
               disabled={isLoading}
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+              <p className="mt-1 text-sm text-pink-500">{errors.email.message}</p>
             )}
           </div>
           
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-1">
               Contraseña
             </label>
             <input
@@ -81,17 +81,17 @@ export default function Login() {
               {...register('password', {
                 required: 'La contraseña es obligatoria',
               })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-gray-800 border border-gray-700 text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500"
               disabled={isLoading}
             />
             {errors.password && (
-              <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+              <p className="mt-1 text-sm text-pink-500">{errors.password.message}</p>
             )}
           </div>
           
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-2 px-4 bg-pink-600 text-white font-medium rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isLoading}
           >
             {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
@@ -99,9 +99,9 @@ export default function Login() {
         </form>
         
         <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-400">
             ¿No tienes una cuenta?{' '}
-            <Link href="/register" className="font-medium text-blue-600 hover:text-blue-500">
+            <Link href="/register" className="font-medium text-pink-500 hover:text-pink-400">
               Regístrate
             </Link>
           </p>

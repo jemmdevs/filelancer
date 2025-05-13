@@ -82,16 +82,16 @@ export default function Upload() {
   
   return (
     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Subir archivo</h1>
+      <h1 className="text-2xl font-bold mb-6 text-white">Subir archivo</h1>
       
       {!uploadedFile ? (
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-gray-900 rounded-lg border border-gray-800 shadow p-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Seleccionar archivo
               </label>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-700 border-dashed rounded-md bg-gray-800">
                 <div className="space-y-1 text-center">
                   <svg
                     className="mx-auto h-12 w-12 text-gray-400"
@@ -107,10 +107,10 @@ export default function Upload() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <div className="flex text-sm text-gray-600">
+                  <div className="flex text-sm text-gray-400">
                     <label
                       htmlFor="file-upload"
-                      className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
+                      className="relative cursor-pointer bg-gray-800 rounded-md font-medium text-pink-500 hover:text-pink-400 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
                     >
                       <span>Seleccionar un archivo</span>
                       <input
@@ -130,15 +130,15 @@ export default function Upload() {
                 </div>
               </div>
               {file && (
-                <div className="mt-2 text-sm text-gray-600">
-                  Archivo seleccionado: <span className="font-semibold">{file.name}</span> ({formatFileSize(file.size)})
+                <div className="mt-2 text-sm text-gray-400">
+                  Archivo seleccionado: <span className="font-semibold text-gray-300">{file.name}</span> ({formatFileSize(file.size)})
                 </div>
               )}
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="accessCode" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="accessCode" className="block text-sm font-medium text-gray-300 mb-2">
                   Código de acceso (opcional)
                 </label>
                 <input
@@ -146,7 +146,7 @@ export default function Upload() {
                   id="accessCode"
                   value={accessCode}
                   onChange={(e) => setAccessCode(e.target.value)}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full border border-gray-700 rounded-md shadow-sm py-2 px-3 bg-gray-800 text-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500"
                   placeholder="Dejar en blanco para acceso público"
                   disabled={isUploading}
                 />
@@ -156,14 +156,14 @@ export default function Upload() {
               </div>
               
               <div>
-                <label htmlFor="expiresAt" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="expiresAt" className="block text-sm font-medium text-gray-300 mb-2">
                   Expiración
                 </label>
                 <select
                   id="expiresAt"
                   value={expiresAt}
                   onChange={(e) => setExpiresAt(e.target.value)}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full border border-gray-700 rounded-md shadow-sm py-2 px-3 bg-gray-800 text-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500"
                   disabled={isUploading}
                 >
                   <option value="1">1 día</option>
@@ -181,7 +181,7 @@ export default function Upload() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 bg-pink-600 text-white font-medium rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isUploading || !file}
               >
                 {isUploading ? 'Subiendo...' : 'Subir archivo'}
@@ -190,9 +190,9 @@ export default function Upload() {
           </form>
         </div>
       ) : (
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-gray-900 rounded-lg border border-gray-800 shadow p-6">
           <div className="text-center mb-6">
-            <div className="mx-auto h-12 w-12 text-green-600">
+            <div className="mx-auto h-12 w-12 text-pink-500">
               <svg
                 className="h-12 w-12"
                 fill="none"
@@ -208,23 +208,23 @@ export default function Upload() {
                 />
               </svg>
             </div>
-            <h2 className="mt-2 text-lg font-medium text-gray-900">¡Archivo subido exitosamente!</h2>
-            <p className="mt-1 text-sm text-gray-500">
+            <h2 className="mt-2 text-lg font-medium text-white">¡Archivo subido exitosamente!</h2>
+            <p className="mt-1 text-sm text-gray-400">
               Tu archivo ha sido subido y está listo para compartirse.
             </p>
           </div>
           
-          <div className="border-t border-b border-gray-200 py-4 my-4">
+          <div className="border-t border-b border-gray-800 py-4 my-4">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div>
-                <h3 className="text-sm font-medium text-gray-500">Nombre del archivo</h3>
-                <p className="mt-1 text-lg font-semibold truncate">{uploadedFile.name}</p>
+                <h3 className="text-sm font-medium text-gray-400">Nombre del archivo</h3>
+                <p className="mt-1 text-lg font-semibold truncate text-white">{uploadedFile.name}</p>
               </div>
               
               <div className="mt-4 md:mt-0">
                 <button
                   onClick={() => setShowQR(!showQR)}
-                  className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="inline-flex items-center px-4 py-2 border border-gray-700 shadow-sm text-sm font-medium rounded-md text-gray-300 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
                 >
                   {showQR ? 'Ocultar QR' : 'Mostrar QR'}
                 </button>
@@ -234,9 +234,9 @@ export default function Upload() {
           
           {showQR && (
             <div className="flex justify-center my-6">
-              <div className="p-4 bg-white border border-gray-200 rounded-md">
+              <div className="p-4 bg-gray-800 border border-gray-700 rounded-md">
                 <QRCodeSVG value={uploadedFile.shareUrl} size={200} />
-                <p className="mt-2 text-center text-sm text-gray-500">
+                <p className="mt-2 text-center text-sm text-gray-400">
                   Escanea este código para acceder al archivo
                 </p>
               </div>
@@ -244,20 +244,20 @@ export default function Upload() {
           )}
           
           <div className="mt-6">
-            <label htmlFor="shareLink" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="shareLink" className="block text-sm font-medium text-gray-300 mb-2">
               Enlace para compartir
             </label>
             <div className="mt-1 flex rounded-md shadow-sm">
               <input
                 type="text"
                 id="shareLink"
-                className="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-l-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-l-md border border-gray-700 bg-gray-800 text-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500"
                 value={uploadedFile.shareUrl}
                 readOnly
               />
               <button
                 onClick={handleCopyLink}
-                className="inline-flex items-center px-3 py-2 border border-l-0 border-gray-300 rounded-r-md bg-gray-50 text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                className="inline-flex items-center px-3 py-2 border border-l-0 border-gray-700 rounded-r-md bg-gray-700 text-gray-300 hover:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-pink-500 focus:border-pink-500"
               >
                 <svg
                   className="h-5 w-5"
@@ -280,14 +280,14 @@ export default function Upload() {
                 setAccessCode('');
                 setExpiresAt(7);
               }}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="inline-flex items-center px-4 py-2 border border-gray-700 shadow-sm text-sm font-medium rounded-md text-gray-300 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
             >
               Subir otro archivo
             </button>
             
             <button
               onClick={() => router.push('/dashboard/files')}
-              className="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="inline-flex items-center px-4 py-2 bg-pink-600 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
             >
               Ver mis archivos
             </button>

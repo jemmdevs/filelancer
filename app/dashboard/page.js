@@ -26,12 +26,12 @@ export default async function Dashboard() {
   
   return (
     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
+      <h1 className="text-2xl font-bold mb-6 text-white">Dashboard</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-gray-900 rounded-lg border border-gray-800 shadow p-6">
           <div className="flex items-center">
-            <div className="p-3 rounded-full bg-blue-100 text-blue-600">
+            <div className="p-3 rounded-full bg-gray-800 text-pink-500">
               <svg
                 className="w-8 h-8"
                 fill="none"
@@ -48,15 +48,15 @@ export default async function Dashboard() {
               </svg>
             </div>
             <div className="ml-4">
-              <h2 className="font-medium text-gray-500">Total de archivos</h2>
-              <p className="text-2xl font-semibold">{totalFiles}</p>
+              <h2 className="font-medium text-gray-400">Total de archivos</h2>
+              <p className="text-2xl font-semibold text-white">{totalFiles}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-gray-900 rounded-lg border border-gray-800 shadow p-6">
           <div className="flex items-center">
-            <div className="p-3 rounded-full bg-green-100 text-green-600">
+            <div className="p-3 rounded-full bg-gray-800 text-pink-500">
               <svg
                 className="w-8 h-8"
                 fill="none"
@@ -73,15 +73,15 @@ export default async function Dashboard() {
               </svg>
             </div>
             <div className="ml-4">
-              <h2 className="font-medium text-gray-500">Archivos activos</h2>
-              <p className="text-2xl font-semibold">{activeFiles}</p>
+              <h2 className="font-medium text-gray-400">Archivos activos</h2>
+              <p className="text-2xl font-semibold text-white">{activeFiles}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-gray-900 rounded-lg border border-gray-800 shadow p-6">
           <div className="flex items-center">
-            <div className="p-3 rounded-full bg-purple-100 text-purple-600">
+            <div className="p-3 rounded-full bg-gray-800 text-pink-500">
               <svg
                 className="w-8 h-8"
                 fill="none"
@@ -98,62 +98,62 @@ export default async function Dashboard() {
               </svg>
             </div>
             <div className="ml-4">
-              <h2 className="font-medium text-gray-500">Descargas totales</h2>
-              <p className="text-2xl font-semibold">{downloadCount}</p>
+              <h2 className="font-medium text-gray-400">Descargas totales</h2>
+              <p className="text-2xl font-semibold text-white">{downloadCount}</p>
             </div>
           </div>
         </div>
       </div>
       
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-gray-900 rounded-lg border border-gray-800 shadow p-6">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Archivos recientes</h2>
-          <Link href="/dashboard/files" className="text-blue-600 hover:text-blue-800">
+          <h2 className="text-xl font-bold text-white">Archivos recientes</h2>
+          <Link href="/dashboard/files" className="text-pink-500 hover:text-pink-400">
             Ver todos
           </Link>
         </div>
         
         {recentFiles.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-gray-800">
+              <thead className="bg-gray-800">
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Nombre
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Tamaño
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Descargas
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Estado
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Expira
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-gray-900 divide-y divide-gray-800">
                 {recentFiles.map((file) => (
-                  <tr key={file._id}>
+                  <tr key={file._id} className="hover:bg-gray-800">
                     <td className="px-6 py-4 whitespace-nowrap truncate max-w-xs">
-                      <div className="text-sm font-medium text-gray-900">{file.name}</div>
+                      <div className="text-sm font-medium text-gray-200">{file.name}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-500">{formatFileSize(file.size)}</div>
+                      <div className="text-sm text-gray-400">{formatFileSize(file.size)}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-500">{file.downloadCount}</div>
+                      <div className="text-sm text-gray-400">{file.downloadCount}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${file.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${file.isActive ? 'bg-pink-900 text-pink-200' : 'bg-gray-800 text-gray-400'}`}>
                         {file.isActive ? 'Activo' : 'Inactivo'}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-gray-400">
                         {new Date(file.expiresAt).toLocaleDateString()}
                       </div>
                     </td>
@@ -164,10 +164,10 @@ export default async function Dashboard() {
           </div>
         ) : (
           <div className="text-center py-8">
-            <p className="text-gray-500">No has subido ningún archivo aún.</p>
+            <p className="text-gray-400">No has subido ningún archivo aún.</p>
             <Link 
               href="/dashboard/upload" 
-              className="mt-4 inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700"
+              className="mt-4 inline-flex items-center px-4 py-2 bg-pink-600 text-white font-medium rounded-md hover:bg-pink-700"
             >
               Subir ahora
             </Link>

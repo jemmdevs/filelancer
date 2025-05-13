@@ -12,7 +12,7 @@ export default async function DashboardLayout({ children }) {
   }
   
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black text-gray-200">
       <Navbar user={session.user} />
       
       <div className="flex">

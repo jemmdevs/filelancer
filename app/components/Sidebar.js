@@ -11,16 +11,16 @@ export default function Sidebar() {
   };
   
   return (
-    <aside className="w-64 bg-white shadow-md hidden md:block">
-      <div className="h-full px-3 py-4 overflow-y-auto">
-        <ul className="space-y-2 font-medium">
+    <aside className="w-64 bg-gray-900 border-r border-gray-800 hidden md:block">
+      <div className="h-full px-3 py-6 overflow-y-auto">
+        <ul className="space-y-3 font-medium">
           <li>
             <Link
               href="/dashboard"
               className={`flex items-center p-3 rounded-lg ${
                 isActive('/dashboard')
-                  ? 'bg-blue-50 text-blue-600'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  ? 'bg-gray-800 text-pink-500 border-l-2 border-pink-500'
+                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
               }`}
             >
               <svg
@@ -41,8 +41,8 @@ export default function Sidebar() {
               href="/dashboard/upload"
               className={`flex items-center p-3 rounded-lg ${
                 isActive('/dashboard/upload')
-                  ? 'bg-blue-50 text-blue-600'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  ? 'bg-gray-800 text-pink-500 border-l-2 border-pink-500'
+                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
               }`}
             >
               <svg
@@ -63,8 +63,8 @@ export default function Sidebar() {
               href="/dashboard/files"
               className={`flex items-center p-3 rounded-lg ${
                 isActive('/dashboard/files')
-                  ? 'bg-blue-50 text-blue-600'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  ? 'bg-gray-800 text-pink-500 border-l-2 border-pink-500'
+                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
               }`}
             >
               <svg
