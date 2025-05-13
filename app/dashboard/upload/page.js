@@ -69,7 +69,7 @@ export default function Upload() {
       
     } catch (error) {
       console.error('Error:', error);
-      toast.error(error.message);
+      toast.error(error.message || 'Error desconocido al subir el archivo');
     } finally {
       setIsUploading(false);
     }
