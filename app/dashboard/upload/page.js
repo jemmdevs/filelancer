@@ -81,12 +81,12 @@ export default function Upload() {
   };
   
   return (
-    <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mb-6 text-white">Subir archivo</h1>
+    <div className="container mx-auto px-2 sm:px-0">
+      <h1 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-white">Subir archivo</h1>
       
       {!uploadedFile ? (
-        <div className="bg-gray-900 rounded-lg border border-gray-800 shadow p-6">
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="bg-gray-900 rounded-lg border border-gray-800 shadow p-4 md:p-6">
+          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
                 Seleccionar archivo
@@ -136,7 +136,7 @@ export default function Upload() {
               )}
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
               <div>
                 <label htmlFor="accessCode" className="block text-sm font-medium text-gray-300 mb-2">
                   Código de acceso (opcional)
@@ -181,7 +181,7 @@ export default function Upload() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="px-4 py-2 bg-pink-600 text-white font-medium rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full md:w-auto px-4 py-2 bg-pink-600 text-white font-medium rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isUploading || !file}
               >
                 {isUploading ? 'Subiendo...' : 'Subir archivo'}
@@ -190,7 +190,7 @@ export default function Upload() {
           </form>
         </div>
       ) : (
-        <div className="bg-gray-900 rounded-lg border border-gray-800 shadow p-6">
+        <div className="bg-gray-900 rounded-lg border border-gray-800 shadow p-4 md:p-6">
           <div className="text-center mb-6">
             <div className="mx-auto h-12 w-12 text-pink-500">
               <svg
@@ -214,7 +214,7 @@ export default function Upload() {
             </p>
           </div>
           
-          <div className="border-t border-b border-gray-800 py-4 my-4">
+          <div className="border-t border-b border-gray-800 py-3 md:py-4 my-3 md:my-4">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div>
                 <h3 className="text-sm font-medium text-gray-400">Nombre del archivo</h3>
@@ -224,7 +224,7 @@ export default function Upload() {
               <div className="mt-4 md:mt-0">
                 <button
                   onClick={() => setShowQR(!showQR)}
-                  className="inline-flex items-center px-4 py-2 border border-gray-700 shadow-sm text-sm font-medium rounded-md text-gray-300 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                  className="w-full md:w-auto inline-flex items-center justify-center px-4 py-2 border border-gray-700 shadow-sm text-sm font-medium rounded-md text-gray-300 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
                 >
                   {showQR ? 'Ocultar QR' : 'Mostrar QR'}
                 </button>
@@ -272,7 +272,7 @@ export default function Upload() {
             </div>
           </div>
           
-          <div className="mt-6 flex justify-between">
+          <div className="mt-6 flex flex-col md:flex-row justify-between space-y-4 md:space-y-0">
             <button
               onClick={() => {
                 setFile(null);
@@ -280,14 +280,14 @@ export default function Upload() {
                 setAccessCode('');
                 setExpiresAt(7);
               }}
-              className="inline-flex items-center px-4 py-2 border border-gray-700 shadow-sm text-sm font-medium rounded-md text-gray-300 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+              className="w-full md:w-auto inline-flex items-center justify-center px-4 py-2 border border-gray-700 shadow-sm text-sm font-medium rounded-md text-gray-300 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
             >
               Subir otro archivo
             </button>
             
             <button
               onClick={() => router.push('/dashboard/files')}
-              className="inline-flex items-center px-4 py-2 bg-pink-600 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+              className="w-full md:w-auto inline-flex items-center justify-center px-4 py-2 bg-pink-600 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
             >
               Ver mis archivos
             </button>

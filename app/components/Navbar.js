@@ -95,6 +95,30 @@ export default function Navbar({ user }) {
               Dashboard
             </Link>
             
+            <Link 
+              href="/dashboard/upload" 
+              className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-gray-700 hover:border-pink-500 hover:text-white"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Subir Archivos
+            </Link>
+            
+            <Link 
+              href="/dashboard/files" 
+              className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-gray-700 hover:border-pink-500 hover:text-white"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Mis Archivos
+            </Link>
+            
+            <Link 
+              href="/dashboard/share" 
+              className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-gray-700 hover:border-pink-500 hover:text-white"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Compartir Archivos
+            </Link>
+            
             {user?.role === 'admin' && (
               <Link 
                 href="/admin-panel" 
