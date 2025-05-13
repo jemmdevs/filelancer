@@ -14,7 +14,7 @@ export default function Navbar({ user }) {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/dashboard" className="text-2xl font-bold text-blue-600">
-                FileLance
+                FileLancer
               </Link>
             </div>
           </div>
