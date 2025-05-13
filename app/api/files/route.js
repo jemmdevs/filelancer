@@ -73,12 +73,11 @@ export async function DELETE(request) {
       );
     }
     
-    // Desactivar el archivo (no eliminarlo físicamente)
-    file.isActive = false;
-    await file.save();
+    // Eliminar el archivo completamente de la base de datos
+    await File.findByIdAndDelete(fileId);
     
     return NextResponse.json({
-      message: 'Archivo desactivado correctamente'
+      message: 'Archivo eliminado correctamente'
     });
     
   } catch (error) {

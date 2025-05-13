@@ -113,6 +113,12 @@ export default function Files() {
     }
   };
   
+  const handleShareFile = (fileId) => {
+    const shareUrl = `${window.location.origin}/share/${fileId}`;
+    navigator.clipboard.writeText(shareUrl);
+    toast.success('Enlace copiado al portapapeles');
+  };
+  
   return (
     <div className="container mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-white">Mis Archivos</h1>
@@ -179,9 +185,15 @@ export default function Files() {
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button
                       onClick={() => handleViewDetails(file)}
-                      className="text-pink-500 hover:text-pink-400 mr-4"
+                      className="text-pink-500 hover:text-pink-400 mr-3"
                     >
                       Detalles
+                    </button>
+                    <button
+                      onClick={() => handleShareFile(file._id)}
+                      className="text-blue-500 hover:text-blue-400 mr-3"
+                    >
+                      Compartir
                     </button>
                     <button
                       onClick={() => handleDeleteFile(file._id)}
